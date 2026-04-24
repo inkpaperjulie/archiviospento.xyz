@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARCHIVIO_SPENTO</title>
+<meta name="description" content="Catalogo di reperti recuperati da angoli morti del web.">
+<meta property="og:title" content="ARCHIVIO_SPENTO">
+<meta property="og:description" content="Cataloghiamo siti che non dovrebbero esistere ma che, per qualche motivo, sono ancora online.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #141414;
+    --amber: #FFB000;
+    --amber-dim: #b87d00;
+    --amber-glow: rgba(255, 176, 0, 0.35);
+    --text: #e8e2d4;
+    --text-dim: #807868;
+    --line: #2a2418;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* scan lines sottili */
+    background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255,176,0,0.015) 0px,
+      rgba(255,176,0,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
+  /* HEADER STICKY */
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    z-index: 10;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+  .header-logo {
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    text-shadow: 0 0 10px var(--amber-glow);
+  }
+  .header-logo .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 0.9em;
+    background: var(--amber);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1.06s steps(2, end) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .header-meta {
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  /* MAIN WRAP */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* HERO / MANIFESTO */
+  .hero {
+    padding: 40px 0 60px;
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 50px;
+  }
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.3em;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 500;
+    color: var(--amber);
+    letter-spacing: 0.03em;
+    margin-bottom: 40px;
+    text-shadow: 0 0 16px var(--amber-glow);
+    line-height: 1.1;
+  }
+  .hero h1 .cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 0.85em;
+    background: var(--amber);
+    margin-left: 4px;
+    vertical-align: baseline;
+    animation: blink 1.06s steps(2, end) infinite;
+  }
+  .manifesto {
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .manifesto p { margin-bottom: 18px; }
+  .manifesto p:last-child { margin-bottom: 0; }
+  .manifesto em { color: var(--amber); font-style: normal; }
+
+  /* SEZIONE */
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+    letter-spacing: 0.3em;
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 30px;
+  }
+  .section-title .count {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-left: 12px;
+  }
+
+  /* INDICE REPERTI */
+  .indice { margin-bottom: 60px; }
+
+  .reperto {
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px dashed var(--line);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+  }
+  .reperto:hover {
+    background: rgba(255, 176, 0, 0.03);
+  }
+  .reperto:first-child { border-top: 1px dashed var(--line); }
+
+  .reperto-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+  .reperto-info {
+    min-width: 0;
+  }
+  .reperto-titolo {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .reperto:hover .reperto-titolo {
+    color: var(--amber);
+  }
+  .reperto-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .reperto-stato {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--amber-dim);
+    white-space: nowrap;
+  }
+  .reperto.in-arrivo .reperto-titolo { color: var(--text-dim); }
+  .reperto.in-arrivo .reperto-num { color: var(--text-dim); }
+  .reperto.in-arrivo .reperto-stato { color: var(--text-dim); }
+  .reperto.in-arrivo:hover { background: none; cursor: default; }
+
+  @media (max-width: 600px) {
+    .reperto {
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+    }
+    .reperto-stato {
+      grid-column: 2;
+      margin-top: 4px;
+    }
+  }
+
+  /* FOLLOW */
+  .follow {
+    padding-top: 50px;
+    border-top: 1px dashed var(--line);
+    margin-top: 50px;
+  }
+  .follow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+  @media (max-width: 600px) {
+    .follow-grid { grid-template-columns: 1fr; }
+  }
+  .follow-card {
+    display: block;
+    text-decoration: none;
+    border: 1px solid var(--line);
+    padding: 18px 20px;
+    transition: all 0.15s;
+    background: var(--bg-2);
+  }
+  .follow-card:hover {
+    border-color: var(--amber);
+    background: rgba(255, 176, 0, 0.04);
+  }
+  .follow-platform {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--amber);
+    letter-spacing: 0.3em;
+    margin-bottom: 6px;
+  }
+  .follow-handle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .follow-card:hover .follow-handle { color: var(--amber); }
+  .follow-desc {
+    font-size: 11px;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 30px 24px;
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.25em;
+  }
+  footer .top-line { margin-bottom: 8px; }
+  footer .bot-line { color: #3a3428; font-size: 9px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="header-logo">ARCHIVIO_SPENTO<span class="cursor"></span></span>
+    <span class="header-meta">INDICE GENERALE</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO / MANIFESTO -->
+  <section class="hero">
+    <div class="hero-label">// MANIFESTO</div>
+    <h1>siti che non<br>dovrebbero esistere.<br>ma esistono<span class="cursor"></span></h1>
+    <div class="manifesto">
+      <p>Internet è pieno di cose che non dovrebbero esserci più. Domini scaduti che rispondono ancora. Forum chiusi che si aggiornano da soli. Pagine personali di gente che ha smesso di esistere online ma che il server, per qualche motivo, non ha mai cancellato.</p>
+      <p>Archivio Spento è un catalogo di queste cose. <em>Reperti</em> recuperati — non si sa sempre da chi, non si sa sempre come. Quello che è certo è che, una volta archiviati, restano qui.</p>
+      <p>Ogni reperto ha una storia. Quasi nessuna è verificata.</p>
+    </div>
+  </section>
+
+  <!-- INDICE REPERTI -->
+  <section class="indice">
+    <div class="section-label">// INDICE REPERTI</div>
+    <h2 class="section-title">Catalogo <span class="count">— 1 archiviato / 3 in lavorazione</span></h2>
+
+    <a class="reperto" href="./reperti/0001/">
+      <div class="reperto-num">N° 0001</div>
+      <div class="reperto-info">
+        <div class="reperto-titolo">Il diario di L.</div>
+        <div class="reperto-desc">Blog personale, Padova, 2003-2004. Il dominio risulta scaduto. Un post nuovo è stato pubblicato di recente.</div>
+      </div>
+      <div class="reperto-stato">[ ARCHIVIATO ]</div>
+    </a>
+
+    <div class="reperto in-arrivo">
+      <div class="reperto-num">N° 0002</div>
+      <div class="reperto-info">
+        <div class="reperto-titolo">—</div>
+        <div class="reperto-desc">Recupero in corso.</div>
+      </div>
+      <div class="reperto-stato">[ IN ARRIVO ]</div>
+    </div>
+
+    <div class="reperto in-arrivo">
+      <div class="reperto-num">N° 0003</div>
+      <div class="reperto-info">
+        <div class="reperto-titolo">—</div>
+        <div class="reperto-desc">Recupero in corso.</div>
+      </div>
+      <div class="reperto-stato">[ IN ARRIVO ]</div>
+    </div>
+
+    <div class="reperto in-arrivo">
+      <div class="reperto-num">N° 0004</div>
+      <div class="reperto-info">
+        <div class="reperto-titolo">—</div>
+        <div class="reperto-desc">Recupero in corso.</div>
+      </div>
+      <div class="reperto-stato">[ IN ARRIVO ]</div>
+    </div>
+  </section>
+
+  <!-- FOLLOW -->
+  <section class="follow">
+    <div class="section-label">// SEGUI L'ARCHIVIO</div>
+    <h2 class="section-title">Dove pubblichiamo</h2>
+    <div class="follow-grid">
+      <a class="follow-card" href="https://instagram.com/archiviospento" target="_blank" rel="noopener">
+        <div class="follow-platform">INSTAGRAM</div>
+        <div class="follow-handle">@archiviospento</div>
+        <div class="follow-desc">Reel e caroselli per ogni reperto.</div>
+      </a>
+      <a class="follow-card" href="https://tiktok.com/@archiviospento" target="_blank" rel="noopener">
+        <div class="follow-platform">TIKTOK</div>
+        <div class="follow-handle">@archiviospento</div>
+        <div class="follow-desc">Video brevi, esplorazioni dal vivo.</div>
+      </a>
+      <a class="follow-card" href="#" target="_blank" rel="noopener">
+        <div class="follow-platform">SUBSTACK</div>
+        <div class="follow-handle">archiviospento</div>
+        <div class="follow-desc">Note lunghe. Contesto. Aggiornamenti.</div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="top-line">— ARCHIVIO_SPENTO / v0.1 / MMXXVI —</div>
+  <div class="bot-line">l'archivista non risponde a tutti i messaggi.</div>
+</footer>
+
+</body>
+</html>
