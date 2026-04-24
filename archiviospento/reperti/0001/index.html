@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>:: il diario di L. ::</title>
+<meta name="author" content="L.">
+<meta name="generator" content="Notepad">
+<style>
+  body {
+    background: #2a2a3d url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' fill='%232a2a3d'/><circle cx='20' cy='20' r='0.5' fill='%234a4a6d'/></svg>");
+    color: #d8d0e8;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 14px;
+    margin: 0;
+    padding: 20px 10px;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    width: 720px;
+    margin: 0 auto;
+    background: #1a1a2e;
+    border: 2px solid #8878a8;
+    padding: 0;
+  }
+
+  .topbanner {
+    background: linear-gradient(to right, #3a1a5e, #5e1a3a, #3a1a5e);
+    color: #ffccff;
+    text-align: center;
+    padding: 18px 10px;
+    border-bottom: 2px solid #8878a8;
+    font-family: "Comic Sans MS", cursive;
+  }
+  .topbanner h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: normal;
+    text-shadow: 2px 2px 0 #000, 0 0 6px #ff99ff;
+    letter-spacing: 2px;
+  }
+  .topbanner .sottotitolo {
+    font-size: 13px;
+    color: #ffaaff;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .barranav {
+    background: #0a0a1e;
+    color: #aaaacc;
+    padding: 6px 12px;
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    border-bottom: 1px solid #5a5a8a;
+  }
+  .barranav a {
+    color: #ffcccc;
+    text-decoration: none;
+    margin: 0 6px;
+  }
+  .barranav a:hover { color: #ffff99; text-decoration: underline; }
+  .barranav a:visited { color: #cc99cc; }
+
+  .contenuto {
+    display: grid;
+    grid-template-columns: 500px 1fr;
+    gap: 0;
+  }
+
+  .centrale {
+    padding: 20px 18px;
+    border-right: 1px dashed #5a5a8a;
+  }
+
+  .sidebar {
+    padding: 20px 14px;
+    font-size: 12px;
+    background: #141424;
+  }
+
+  /* POST */
+  .post {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed #5a5a8a;
+  }
+  .post:last-child { border-bottom: none; }
+
+  .post-data {
+    color: #ffaaff;
+    font-family: Verdana, sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .post-titolo {
+    color: #ffff99;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+    text-shadow: 1px 1px 0 #000;
+  }
+  .post-corpo {
+    color: #e8e0f0;
+  }
+  .post-corpo p {
+    margin: 0 0 10px 0;
+  }
+  .post-corpo em { color: #ffccff; }
+  .post-corpo strong { color: #ffff99; font-weight: normal; letter-spacing: 1px; }
+
+  .post-firma {
+    color: #aa99cc;
+    font-style: italic;
+    font-size: 12px;
+    margin-top: 12px;
+    text-align: right;
+  }
+
+  .post-nuovo {
+    background: #1e0a1e;
+    border: 1px dashed #ff66aa;
+    padding: 14px 14px 10px 14px;
+    margin-left: -4px;
+    margin-right: -4px;
+  }
+  .post-nuovo .post-data {
+    color: #ff88cc;
+  }
+  .post-nuovo::before {
+    content: "★ nuovo ★";
+    display: inline-block;
+    background: #ff66aa;
+    color: #000;
+    font-family: Verdana, sans-serif;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 1px 6px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* SIDEBAR */
+  .boxino {
+    background: #0e0e1e;
+    border: 1px solid #5a5a8a;
+    padding: 10px;
+    margin-bottom: 18px;
+  }
+  .boxino h3 {
+    color: #ffff99;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0 0 8px 0;
+    border-bottom: 1px dashed #5a5a8a;
+    padding-bottom: 4px;
+  }
+  .boxino ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 11px;
+  }
+  .boxino ul li {
+    padding: 2px 0;
+    color: #ccbbee;
+  }
+  .boxino ul li a {
+    color: #ffaaff;
+    text-decoration: none;
+  }
+  .boxino ul li a:hover { text-decoration: underline; color: #ffff99; }
+  .boxino ul li.morto a {
+    color: #665577;
+    text-decoration: line-through;
+  }
+
+  .infoPersonali {
+    font-size: 11px;
+    color: #ccbbee;
+    line-height: 1.7;
+  }
+  .infoPersonali b { color: #ffccff; font-weight: normal; }
+
+  .contatore {
+    background: #000;
+    color: #ff3300;
+    font-family: "Courier New", monospace;
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-align: center;
+    padding: 8px;
+    border: 2px inset #5a5a8a;
+    margin-bottom: 8px;
+  }
+  .contatore-info {
+    font-size: 10px;
+    text-align: center;
+    color: #888899;
+    font-style: italic;
+  }
+
+  .canzone {
+    font-size: 11px;
+    color: #ccbbee;
+    font-style: italic;
+  }
+  .canzone b { color: #ffff99; font-style: normal; }
+
+  /* FOOTER */
+  .footer {
+    background: #0a0a1e;
+    color: #666688;
+    text-align: center;
+    padding: 14px 10px;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+    border-top: 2px solid #5a5a8a;
+    letter-spacing: 1px;
+  }
+  .footer a { color: #8888aa; text-decoration: none; }
+
+  /* GUESTBOOK box */
+  .guestbook-box {
+    margin-top: 12px;
+    padding: 8px;
+    background: #000;
+    color: #ff8844;
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    text-align: center;
+    border: 1px solid #5a5a8a;
+  }
+  .guestbook-box a { color: #ff8844; }
+
+  /* GIF placeholder */
+  .gif {
+    display: inline-block;
+    width: 88px;
+    height: 31px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+    background-size: 400% 400%;
+    animation: gifmove 3s linear infinite;
+    color: #000;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 10px;
+    text-align: center;
+    line-height: 31px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+    border: 1px solid #fff;
+  }
+  @keyframes gifmove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .gif-stack { text-align: center; margin-bottom: 14px; }
+  .gif-stack .gif { margin: 2px; }
+
+  /* small anomaly - invisible unless inspected */
+  .glitch-line {
+    color: #3a3a5a;
+    font-size: 10px;
+    font-family: monospace;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    user-select: none;
+  }
+
+  @media (max-width: 760px) {
+    .wrap { width: 100%; border-left: none; border-right: none; }
+    .contenuto { grid-template-columns: 1fr; }
+    .centrale { border-right: none; border-bottom: 1px dashed #5a5a8a; }
+    .topbanner h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="topbanner">
+    <h1>:: il diario di L. ::</h1>
+    <div class="sottotitolo">~ "quello che non scrivo non succede" ~</div>
+  </div>
+
+  <div class="barranav">
+    <a href="#">home</a> ·
+    <a href="#">chi sono</a> ·
+    <a href="#">le mie foto</a> ·
+    <a href="#">le canzoni che ascolto</a> ·
+    <a href="#">guestbook</a> ·
+    <a href="mailto:lettera.mai.spedita@inwind.it">scrivimi</a>
+  </div>
+
+  <div class="contenuto">
+
+    <!-- COLONNA CENTRALE -->
+    <div class="centrale">
+
+      <!-- POST NUOVO - DATA DINAMICA -->
+      <div class="post post-nuovo">
+        <div class="post-data" id="data-oggi">— caricamento data —</div>
+        <h2 class="post-titolo">non ero sicura di tornare</h2>
+        <div class="post-corpo">
+          <p>Ho provato a chiudere il sito diverse volte. Una volta ho cancellato tutti i file dal server, ma il giorno dopo erano di nuovo qui. Ho smesso di provarci da un po'.</p>
+          <p>Non ricordo com'era l'ultima volta che ho scritto. Ricordo che era <em>estate</em>, ma non ricordo quale. Ricordo una cosa che ho detto a qualcuno su una panchina, ma non ricordo a chi. I dettagli ti scappano quando non li scrivi.</p>
+          <p>Se state leggendo questo, probabilmente siete arrivati qui per sbaglio. Io non so <strong>come</strong> ci siete arrivati, perché i link a questo sito li ho tolti tutti, e il dominio dovrebbe essere scaduto nel 2005.</p>
+          <p>Però siete qui. E io sono tornata. Non so cosa significhi.</p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <!-- POST VECCHI -->
+      <div class="post">
+        <div class="post-data">lunedì, 14 giugno 2004 — 23:47</div>
+        <h2 class="post-titolo">l'ultima volta che</h2>
+        <div class="post-corpo">
+          <p>L'ultima volta che ho visto Marco era a una festa a cui non volevo andare. Lui stava vicino alla porta della cucina e beveva qualcosa in un bicchiere di plastica. Mi ha detto <em>ciao</em> e io gli ho detto <em>ciao</em> e poi non ci siamo più detti niente per il resto della serata.</p>
+          <p>Sono sicura che volevamo dirci altro. Lui aveva una faccia che voleva dire altro. Io credo di avere avuto una faccia che voleva dire altro. Ma la festa era piena e la musica era alta e a un certo punto lui è andato via senza salutare.</p>
+          <p>Adesso è passato un anno e non mi ha mai chiamata. Non so se si ricorda che esisto. Io qualche volta mi dimentico che esiste lui, e questo mi spaventa, perché fino a giugno era <strong>la cosa più importante</strong> della mia vita.</p>
+          <p>Tutto quello che non scrivo <em>non succede.</em> Per questo scrivo.</p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <div class="post">
+        <div class="post-data">martedì, 3 febbraio 2004 — 02:11</div>
+        <h2 class="post-titolo">una cosa piccola</h2>
+        <div class="post-corpo">
+          <p>Oggi mia nonna mi ha chiesto se ero felice e io le ho detto di sì. Non era vero. Però non era neanche una bugia grossa, perché in quel momento esatto - lei che faceva il caffè, io seduta al tavolo, la radio accesa con una canzone vecchia - stavo abbastanza bene.</p>
+          <p>Credo che la felicità non sia una cosa grande. Credo che sia una serie di piccoli momenti che <strong>dimentichiamo</strong> subito dopo, e che per questo ci sembra di non essere mai felici. Ma lo siamo stati, a pezzi.</p>
+          <p>Scrivo qui per non dimenticarli.</p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <div class="post">
+        <div class="post-data">domenica, 21 dicembre 2003 — 18:33</div>
+        <h2 class="post-titolo">lista delle cose che non ho fatto quest'anno</h2>
+        <div class="post-corpo">
+          <p>- non sono andata al mare<br>
+             - non ho scritto la lettera che dovevo scrivere<br>
+             - non ho imparato a suonare la chitarra come avevo promesso<br>
+             - non ho chiamato S. per il suo compleanno<br>
+             - non ho finito il libro di Calvino che mi avevano regalato a gennaio<br>
+             - non ho pianto alla messa di mezzanotte dell'anno scorso, anche se volevo<br>
+             - non ho detto a mia madre che le voglio bene, anche se lo penso spesso<br>
+             - non ho capito cosa voglio fare l'anno prossimo</p>
+          <p>Forse il 2004 sarà diverso. Forse no. <em>Felice natale a chi passa di qua.</em></p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <div class="post">
+        <div class="post-data">giovedì, 4 settembre 2003 — 16:02</div>
+        <h2 class="post-titolo">il treno delle 15:47</h2>
+        <div class="post-corpo">
+          <p>Prendo sempre il treno delle 15:47 il giovedì, per tornare da Padova. È un regionale vecchio, con i sedili di stoffa che puzzano, e ci mette un'ora e venti. Io di solito mi metto vicino al finestrino e guardo fuori senza pensare a niente.</p>
+          <p>Oggi c'era un signore anziano seduto davanti a me che si è addormentato con un libro in mano. Il libro era <em>Il barone rampante.</em> A un certo punto il libro gli è scivolato a terra e io l'ho raccolto e gliel'ho rimesso sulle ginocchia e lui non si è svegliato.</p>
+          <p>Mi è sembrata una cosa bellissima. Una persona che dorme su un treno tenendo in mano un libro che ha smesso di leggere. Mi è sembrata la cosa <strong>più umana</strong> che avessi visto in settimane.</p>
+          <p>Sono scesa alla mia stazione e lui dormiva ancora.</p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <div class="post">
+        <div class="post-data">martedì, 8 aprile 2003 — 22:54</div>
+        <h2 class="post-titolo">apro questo diario</h2>
+        <div class="post-corpo">
+          <p>Ho fatto questo sito ieri sera. Ci ho messo tre ore perché non so usare bene l'HTML e le tabelle mi si spostano sempre. Non sono sicura di volerlo far leggere a qualcuno. Non sono nemmeno sicura del perché lo sto facendo.</p>
+          <p>Diciamo che ho bisogno di un posto dove mettere le cose che mi succedono, prima che le dimentichi. Mia nonna dice sempre che <em>quello che non scrivi non succede.</em> Io credo che sia il contrario - credo che quello che succede, <strong>succede comunque</strong>, solo che poi sparisce. Scrivere è l'unico modo per tenerlo.</p>
+          <p>Quindi. Benvenuti qui, se c'è qualcuno. Io mi chiamo L. e da oggi scrivo.</p>
+        </div>
+        <div class="post-firma">— L.</div>
+      </div>
+
+      <div class="glitch-line">— fine archivio — ultimo accesso: [ ERR: DATE_UNKNOWN ] —</div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <div class="gif-stack">
+        <span class="gif">NETSCAPE</span>
+        <span class="gif">MP3</span>
+        <br>
+        <span class="gif" style="animation-delay: -1s;">NO WAR</span>
+        <span class="gif" style="animation-delay: -2s;">HTML</span>
+      </div>
+
+      <div class="boxino">
+        <h3>♡ chi sono</h3>
+        <div class="infoPersonali">
+          <b>nome:</b> L.<br>
+          <b>età:</b> 22<br>
+          <b>dove:</b> Padova<br>
+          <b>segno:</b> bilancia<br>
+          <b>studi:</b> lettere moderne<br>
+          <b>mi piacciono:</b> i treni regionali, le cartoline, le serate quando piove
+        </div>
+      </div>
+
+      <div class="boxino">
+        <h3>♪ adesso ascolto</h3>
+        <div class="canzone">
+          <b>Battiato</b> — la cura<br>
+          <b>Baustelle</b> — la guerra è finita<br>
+          <b>Carmen Consoli</b> — parole di burro<br>
+          <em>(playlist del mese di giugno)</em>
+        </div>
+      </div>
+
+      <div class="boxino">
+        <h3>» siti amici</h3>
+        <ul>
+          <li class="morto"><a href="#">la stanza di giada</a></li>
+          <li class="morto"><a href="#">il blog di marco</a></li>
+          <li><a href="#">diario di una 20enne</a></li>
+          <li class="morto"><a href="#">xXx_dark_poems_xXx</a></li>
+          <li class="morto"><a href="#">le poesie di S.</a></li>
+        </ul>
+      </div>
+
+      <div class="boxino">
+        <h3>★ visite</h3>
+        <div class="contatore" id="contatore">00074</div>
+        <div class="contatore-info">dal 8 aprile 2003</div>
+      </div>
+
+      <div class="boxino">
+        <h3>✉ guestbook</h3>
+        <div class="guestbook-box">
+          <a href="#">» firma il guestbook «</a>
+          <br><br>
+          <span style="color: #666;">(0 messaggi)</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ◆ best viewed with <a href="#">Netscape 4</a> at 800×600 ◆ <br>
+    © L. 2003-2004 — tutti i diritti sono di chi legge
+  </div>
+
+</div>
+
+<script>
+  // Data di oggi, in italiano, stile "lunedì, 25 aprile 2026 — 03:47"
+  (function() {
+    var giorni = ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'];
+    var mesi = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+    var now = new Date();
+    var g = giorni[now.getDay()];
+    var d = now.getDate();
+    var m = mesi[now.getMonth()];
+    var a = now.getFullYear();
+    var h = String(now.getHours()).padStart(2, '0');
+    var min = String(now.getMinutes()).padStart(2, '0');
+    var el = document.getElementById('data-oggi');
+    if (el) el.textContent = g + ', ' + d + ' ' + m + ' ' + a + ' — ' + h + ':' + min;
+  })();
+
+  // Contatore che cresce mentre guardi
+  (function() {
+    var el = document.getElementById('contatore');
+    if (!el) return;
+    // Base semi-persistente tramite data di accesso
+    var start = 74;
+    var daysSince = Math.floor((new Date() - new Date('2003-04-08')) / (1000*60*60*24));
+    var current = start + Math.floor(daysSince * 0.3) + Math.floor(Math.random() * 20);
+    function render(n) {
+      el.textContent = String(n).padStart(5, '0');
+    }
+    render(current);
+    // Ogni tanto aumenta di 1 mentre la pagina è aperta
+    setInterval(function() {
+      if (Math.random() < 0.35) {
+        current += 1;
+        render(current);
+      }
+    }, 4500);
+  })();
+</script>
+
+</body>
+</html>
